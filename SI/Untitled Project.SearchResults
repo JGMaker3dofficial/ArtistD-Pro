@@ -1,0 +1,23 @@
+---- DEFAULT_Kp Matches (2 in 2 files) ----
+Configuration.h line 510 : 
+  // Ultimaker
+  #define DEFAULT_Kp 22.2
+  #define DEFAULT_Ki 1.08
+  #define DEFAULT_Kd 114
+
+  // MakerGear
+  //#define DEFAULT_Kp 7.0
+  //#define DEFAULT_Ki 0.1
+  //#define DEFAULT_Kd 12
+
+  // Mendel Parts V9 on 12V
+  //#define DEFAULT_Kp 63.0
+  //#define DEFAULT_Ki 2.25
+  //#define DEFAULT_Kd 440
+
+configuration_store.cpp (src\module) line 2629 : 
+    HOTEND_LOOP() {
+      PID_PARAM(Kp, e) = float(DEFAULT_Kp);
+      PID_PARAM(Ki, e) = scalePID_i(DEFAULT_Ki);
+      PID_PARAM(Kd, e) = scalePID_d(DEFAULT_Kd);
+      #if ENABLED(PID_EXTRUSION_SCALING)
