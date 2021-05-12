@@ -70,7 +70,7 @@ void lv_draw_about(void)
 
 	lv_obj_t *fw_version = lv_label_create(scr, NULL);
 	lv_obj_set_style(fw_version, &tft_style_label_rel);
-	lv_label_set_text(fw_version, "Version: V_2.0.5.3");
+	lv_label_set_text(fw_version, ARTIST_D_PRO_VERSION);
 	lv_obj_align(fw_version, NULL, LV_ALIGN_CENTER, 0, -60);
 
 	lv_obj_t *fw_type = lv_label_create(scr, NULL);

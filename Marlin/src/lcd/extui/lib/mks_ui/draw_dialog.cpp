@@ -415,7 +415,7 @@ void lv_draw_dialog(uint8_t type)
 	//Alarm after material depletion
 	if(DialogType == DIALOG_PAUSE_MESSAGE_CHANGING)
 	{
-		if(READ(FIL_RUNOUT1_PIN))
+		if(READ(FIL_RUNOUT1_PIN)||READ(FIL_RUNOUT2_PIN))
 		{
 			extDigitalWrite(BEEPER_PIN,HIGH);
 		}

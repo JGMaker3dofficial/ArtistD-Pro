@@ -2,7 +2,6 @@
 #if ENABLED(TFT_LITTLE_VGL_UI)
 #include "draw_ui.h"
 #include "../../../../gcode/queue.h"
-#include "../../../../gcode/gcode.h"
 
 
 #define ID_M_POINT1			1
@@ -37,9 +36,17 @@ static void event_handler(lv_obj_t *obj, lv_event_t event)
 					queue.enqueue_one_P(PSTR("G1 Z10"));
 					
 					memset(public_buf_l, 0, sizeof(public_buf_l));
-					sprintf(public_buf_l, "G1 X%d Y%d", MANUAL_LEVELING_POINT_X1, MANUAL_LEVELING_POINT_Y1);
+					sprintf(public_buf_l, "G1 X%d Y%d F%d", MANUAL_LEVELING_POINT_X1, MANUAL_LEVELING_POINT_Y1, HOMING_FEEDRATE_XY);
 					queue.enqueue_one_P(PSTR(public_buf_l));
-					queue.enqueue_one_P(PSTR("G1 Z0"));
+
+					if(uiCfg.curSprayerLevel == 0)
+					{
+						queue.enqueue_one_P(PSTR("G28 Z"));
+					}
+					else
+					{
+						queue.enqueue_one_P(PSTR("G1 Z0"));
+					}
 				}
 			}
 			break;
@@ -59,7 +66,7 @@ static void event_handler(lv_obj_t *obj, lv_event_t event)
 					queue.enqueue_one_P(PSTR("G1 Z10"));
 					
 					memset(public_buf_l, 0, sizeof(public_buf_l));
-					sprintf(public_buf_l, "G1 X%d Y%d", MANUAL_LEVELING_POINT_X2, MANUAL_LEVELING_POINT_Y2);
+					sprintf(public_buf_l, "G1 X%d Y%d F%d", MANUAL_LEVELING_POINT_X2, MANUAL_LEVELING_POINT_Y2, HOMING_FEEDRATE_XY);
 					queue.enqueue_one_P(PSTR(public_buf_l));
 					queue.enqueue_one_P(PSTR("G1 Z0"));
 				}
@@ -81,7 +88,7 @@ static void event_handler(lv_obj_t *obj, lv_event_t event)
 					queue.enqueue_one_P(PSTR("G1 Z10"));
 					
 					memset(public_buf_l, 0, sizeof(public_buf_l));
-					sprintf(public_buf_l, "G1 X%d Y%d", MANUAL_LEVELING_POINT_X3, MANUAL_LEVELING_POINT_Y3);
+					sprintf(public_buf_l, "G1 X%d Y%d F%d", MANUAL_LEVELING_POINT_X3, MANUAL_LEVELING_POINT_Y3, HOMING_FEEDRATE_XY);
 					queue.enqueue_one_P(PSTR(public_buf_l));
 					queue.enqueue_one_P(PSTR("G1 Z0"));
 				}
@@ -103,7 +110,7 @@ static void event_handler(lv_obj_t *obj, lv_event_t event)
 					queue.enqueue_one_P(PSTR("G1 Z10"));
 					
 					memset(public_buf_l, 0, sizeof(public_buf_l));
-					sprintf(public_buf_l, "G1 X%d Y%d", MANUAL_LEVELING_POINT_X4, MANUAL_LEVELING_POINT_Y4);
+					sprintf(public_buf_l, "G1 X%d Y%d F%d", MANUAL_LEVELING_POINT_X4, MANUAL_LEVELING_POINT_Y4, HOMING_FEEDRATE_XY);
 					queue.enqueue_one_P(PSTR(public_buf_l));
 					queue.enqueue_one_P(PSTR("G1 Z0"));
 				}
@@ -125,7 +132,7 @@ static void event_handler(lv_obj_t *obj, lv_event_t event)
 					queue.enqueue_one_P(PSTR("G1 Z10"));
 					
 					memset(public_buf_l, 0, sizeof(public_buf_l));
-					sprintf(public_buf_l, "G1 X%d Y%d", MANUAL_LEVELING_POINT_X5, MANUAL_LEVELING_POINT_Y5);
+					sprintf(public_buf_l, "G1 X%d Y%d F%d", MANUAL_LEVELING_POINT_X5, MANUAL_LEVELING_POINT_Y5, HOMING_FEEDRATE_XY);
 					queue.enqueue_one_P(PSTR(public_buf_l));
 					queue.enqueue_one_P(PSTR("G1 Z0"));
 				}
@@ -194,7 +201,7 @@ static void event_handler(lv_obj_t *obj, lv_event_t event)
 						break;
 				}
 
-				if(uiCfg.curSprayerChoose == 0)
+				if(uiCfg.curSprayerLevel == 0)
 				{
 					queue.enqueue_one_P(PSTR("T0"));
 				}
@@ -253,25 +260,25 @@ void lv_draw_manualLevel(void)
 	lv_imgbtn_set_style(buttonPoint1, LV_BTN_STATE_REL, &tft_style_label_rel);
 	lv_obj_clear_protect(buttonPoint1, LV_PROTECT_FOLLOW);
 
-	lv_obj_set_event_cb_mks(buttonPoint2, event_handler, ID_M_POINT2, "bmp_Leveling2.bin", 0);
+	lv_obj_set_event_cb_mks(buttonPoint2, event_handler, ID_M_POINT2, "bmp_Leveling5.bin", 0);
 	lv_imgbtn_set_src(buttonPoint2, LV_BTN_STATE_REL, &bmp_pic);
 	lv_imgbtn_set_src(buttonPoint2, LV_BTN_STATE_PR, &bmp_pic);
 	lv_imgbtn_set_style(buttonPoint2, LV_BTN_STATE_PR, &tft_style_label_pre);
 	lv_imgbtn_set_style(buttonPoint2, LV_BTN_STATE_REL, &tft_style_label_rel);
 
-	lv_obj_set_event_cb_mks(buttonPoint3, event_handler, ID_M_POINT3, "bmp_Leveling3.bin", 0);	
+	lv_obj_set_event_cb_mks(buttonPoint3, event_handler, ID_M_POINT3, "bmp_Leveling4.bin", 0);	
     lv_imgbtn_set_src(buttonPoint3, LV_BTN_STATE_REL, &bmp_pic);
     lv_imgbtn_set_src(buttonPoint3, LV_BTN_STATE_PR, &bmp_pic);	
 	lv_imgbtn_set_style(buttonPoint3, LV_BTN_STATE_PR, &tft_style_label_pre);
 	lv_imgbtn_set_style(buttonPoint3, LV_BTN_STATE_REL, &tft_style_label_rel);
 
-	lv_obj_set_event_cb_mks(buttonPoint4, event_handler, ID_M_POINT4, "bmp_Leveling4.bin", 0);	
+	lv_obj_set_event_cb_mks(buttonPoint4, event_handler, ID_M_POINT4, "bmp_Leveling3.bin", 0);	
     lv_imgbtn_set_src(buttonPoint4, LV_BTN_STATE_REL, &bmp_pic);
     lv_imgbtn_set_src(buttonPoint4, LV_BTN_STATE_PR, &bmp_pic);	
 	lv_imgbtn_set_style(buttonPoint4, LV_BTN_STATE_PR, &tft_style_label_pre);
 	lv_imgbtn_set_style(buttonPoint4, LV_BTN_STATE_REL, &tft_style_label_rel);
 
-	lv_obj_set_event_cb_mks(buttonPoint5, event_handler, ID_M_POINT5, "bmp_Leveling5.bin", 0);	
+	lv_obj_set_event_cb_mks(buttonPoint5, event_handler, ID_M_POINT5, "bmp_Leveling2.bin", 0);	
     lv_imgbtn_set_src(buttonPoint5, LV_BTN_STATE_REL, &bmp_pic);
     lv_imgbtn_set_src(buttonPoint5, LV_BTN_STATE_PR, &bmp_pic);	
 	lv_imgbtn_set_style(buttonPoint5, LV_BTN_STATE_PR, &tft_style_label_pre);
@@ -353,7 +360,7 @@ void disp_level_type(void)
 {
 	if(uiCfg.curSprayerLevel == 0)
 	{
-		gcode.process_subcommands_now_P(PSTR("T0"));
+		queue.enqueue_one_P(PSTR("T0"));
 		lv_obj_set_event_cb_mks(buttoType, event_handler, ID_M_X_TYPE, "bmp_Extru1.bin", 0);
 		if(gCfgItems.multiple_language != 0)
 		{
@@ -363,14 +370,14 @@ void disp_level_type(void)
 	}
 	else
 	{
-		gcode.process_subcommands_now_P(PSTR("T1"));
+		queue.enqueue_one_P(PSTR("T1"));
 		lv_obj_set_event_cb_mks(buttoType, event_handler, ID_M_X_TYPE, "bmp_Extru2.bin", 0);
 		if(gCfgItems.multiple_language != 0)
 		{
 			lv_label_set_text(labelType, extrude_menu.ext2);
 			lv_obj_align(labelType, buttoType, LV_ALIGN_IN_BOTTOM_MID, 0, BUTTON_TEXT_Y_OFFSET);
 		}
-	}	
+	}
 }
 
 void lv_clear_manualLevel(void)
