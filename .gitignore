@@ -184,3 +184,5 @@ cmake-build-*
 
 #Python
 __pycache__
+
+*.code-workspace
