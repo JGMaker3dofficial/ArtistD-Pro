@@ -1,20 +1,14 @@
-# Firmware For JGMaker Artist-D
-![GitHub](https://img.shields.io/github/license/JGMaker3dofficial/artistd.svg)
-![GitHub contributors](https://img.shields.io/github/contributors/JGMaker3dofficial/artistd.svg)
-![GitHub Release Date](https://img.shields.io/github/release-date/JGMaker3dofficial/artistd.svg)
+# Firmware For JGMaker Artist-D PRO
 
 ## Official Firmware 
-* Get the inital release of the Official Firmware: 
-
-## Pre-Release of Official Firmware
-These are pre-releases driven by the community in conjunction with JGMaker.  Beta Releases are not officially supported; yet. 
+* Get the inital release of the Official Firmware: https://github.com/JGMaker3dofficial/ArtistD-Pro
 
 ## Community Firmware
-These are dedicated members of the Artist-D community, These version of firmware are not supported 
+These are My contributions to the Artist-D community, These version of firmware are not supported by JGMaker
 * 
 
 # Curent Status
-This version of the firmware is based from the 2.0.0 Version of Marlin. 
+This version of the firmware is based from the 2.3.3 Version of the JGMaker Firmware.   I do not own a Pro version of the Artist-D so I rely heaviliy on the commity to test and proof my firmware releases.  
 
 ## Getting the Upstram Marlin
 There are some instructions here for setting your repository with the upstream Marlin Source. 
