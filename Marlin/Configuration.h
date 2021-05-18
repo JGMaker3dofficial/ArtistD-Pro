@@ -37,7 +37,7 @@
  *
  */
 #define CONFIGURATION_H_VERSION 020005
-#define ARTIST_D_PRO_VERSION "Version:Artist-D Pro V2.3.2"
+#define ARTIST_D_PRO_VERSION "Version:Artist-D Pro V2021.1"
 
 #define TFT_LITTLE_VGL_UI
 #if ENABLED(TFT_LITTLE_VGL_UI)
@@ -481,8 +481,8 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 250
-#define HEATER_1_MAXTEMP 250
+#define HEATER_0_MAXTEMP 300
+#define HEATER_1_MAXTEMP 300
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
 #define HEATER_4_MAXTEMP 275
